@@ -4,8 +4,20 @@
 
 <h2>{{album.artist}}</h2>
 
-{% for song in album.song_set.all %}
-	<ul>
-		<li> {{song.song_title}} --> {{song.file_type}}</li>
-	</ul>
-{% endfor%}
+	{% if error_msg%}
+		<p><strong> {{error_msg}}</strong></p>
+	{% endif %}
+
+<form action="{% url 'music:favourite' album.id %}" method="post">
+		{% csrf_token %}
+		{% for song in album.song_set.all %}
+			<input type="radio" name="song" value="{{song.id}}"/>
+			<label for="song{{forloop.counter}}">
+				{{song.song_title}}
+				{% if song.isFavourite %}
+					<img src="https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Star_Gold-24.png">
+				{% endif %}
+			</label><br>
+		{% endfor%}
+		<input type="submit" value="Favourite">
+</form>
