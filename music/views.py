@@ -1,8 +1,22 @@
 
-from django.http import Http404
-from django.shortcuts import render,get_object_or_404
+#from django.http import Http404
+#from django.shortcuts import render,get_object_or_404
+from django.views import generic
 from .models import Album
 
+class IndexView (generic.ListView):
+	context_object_name = 'all_albums'
+	template_name = 'music/index.html'
+
+	def get_queryset(self):
+		return Album.objects.all()
+
+
+class DetailsView (generic.DetailView):
+	model = Album
+	template_name = 'music/detail.html'	
+
+'''
 def index(request):
 	all_albums = Album.objects.all()
 	context = {'all_albums' : all_albums}
@@ -21,4 +35,5 @@ def favourite(request,album_id):
 	else:
 		selected_song.isFavourite = True
 		selected_song.save()
-		return render(request, 'music/detail.html', {'album' : album})		
+		return render(request, 'music/detail.html', {'album' : album})		'''
+

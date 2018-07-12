@@ -5,11 +5,11 @@ app_name = 'music'
 
 urlpatterns = [
 	#music/
-	path('', views.index, name='index'),
+	path('', views.IndexView.as_view(), name='index'),
 
 	#music/{album_id}/
-	path('<album_id>/', views.details, name='details'),
+	path('<pk>/', views.DetailsView.as_view(), name='details'),
 
 	#music/{album_id}/favourite/
-	path('<album_id>/favourite', views.favourite, name='favourite'),
+	#path('<album_id>/favourite', views.favourite, name='favourite'),	---->>NOT USING FAVOURITE FEATURE NOW
 ]
