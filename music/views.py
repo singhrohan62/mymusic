@@ -3,6 +3,7 @@
 #from django.shortcuts import render,get_object_or_404
 from django.views import generic
 from .models import Album
+from django.views.generic.edit import CreateView
 
 class IndexView (generic.ListView):
 	context_object_name = 'all_albums'
@@ -15,6 +16,12 @@ class IndexView (generic.ListView):
 class DetailsView (generic.DetailView):
 	model = Album
 	template_name = 'music/detail.html'	
+
+class AlbumCreate(CreateView):
+	model = Album
+	fields = ['artist','album_title','genre','album_logo']
+	template_name = 'music/album_form.html'
+		
 
 '''
 def index(request):
