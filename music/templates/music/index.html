@@ -5,11 +5,21 @@
 
 {% if all_albums %}
 
-<ul>
+	<div class="row">
 	{% for album in all_albums %}
-	<li><a href=" {% url 'music:details' album.id%}">{{album.album_title}}</a></li>
+		<div class="col-sm-4">
+
+				<div class="card" style="width: 23rem;">
+				  <img class="card-img-top" src="{{album.album_logo}}" alt="Card image cap">
+				  <div class="card-body">
+				    <h5 class="card-title">{{album.album_title}}</h5>
+				    <p class="card-text">{{album.artist}}</p>
+				    <a href="{% url 'music:details' album.id%}" class="btn btn-outline-info" role="button">View Songs</a>
+				  </div>
+				</div>
+		</div>
 	{% endfor %}
-</ul>	
+	</div>
 
 {%else %} 
 	<h3>You don't have any music albums</h3>

@@ -6,25 +6,34 @@
 
 {% block body %}
 
-<img src = "{{album.album_logo}}"/>
+<div class="col-sm-4" style="float: left;width: 23rem;background-color: #fff;">
+	<div class="card">
+	<img class="card-img-top" src = "{{album.album_logo}}"/>
+	</div>
+	<div class="card-body">		
+		<h1>{{album.album_title}}</h1>
 
-<h1>{{album.album_title}}</h1>
-
-<h2>{{album.artist}}</h2>
-
-	{% if error_msg%}
+		<h2>{{album.artist}}</h2>
+		{% if error_msg%}
 		<p><strong> {{error_msg}}</strong></p>
 	{% endif %}
 
-
+	<ul class="list-group list-group-flush">
 		{% csrf_token %}
 		{% for song in album.song_set.all %}
 
-				{{song.song_title}}
-				{% if song.isFavourite %}
-					<img src="https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Star_Gold-24.png">
-				{% endif %}
-<br>
+				<li class="list-group-item">{{song.song_title}}</li>
+				
 		{% endfor%}
+	</ul>
+	</div>
+</div>
+
+<div class="card col-sm-8" style="padding-left: 30vw;">
+
+	<h3> Add song to the album</h3>
+	</div>
+
+
 
 {% endblock %}
