@@ -10,12 +10,28 @@
 		<div class="col-sm-4">
 
 				<div class="card" style="width: 23rem;">
+
 				  <img class="card-img-top" src="{{album.album_logo}}" alt="Card image cap">
+
 				  <div class="card-body">
+
 				    <h5 class="card-title">{{album.album_title}}</h5>
+
 				    <p class="card-text">{{album.artist}}</p>
+
 				    <a href="{% url 'music:details' album.id%}" class="btn btn-outline-info" role="button">View Songs</a>
+
+				    <!--<form action="{% url 'music:album-update' album.id %} " method="post">
+					    <button type="button" class="btn btn-outline-success">Update</button>	
+				    </form>-->
+				    
+				    <form action="{% url 'music:album-delete' album.id %} " method="post">
+				    		{% csrf_token %}
+				    	<button type="button" class="btn btn-outline-danger">Delete</button>	
+				    </form>
+				    
 				  </div>
+
 				</div>
 		</div>
 	{% endfor %}
