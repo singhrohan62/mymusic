@@ -19,12 +19,7 @@
 
 				    <p class="card-text">{{album.artist}}</p>
 
-				    <a href="{% url 'music:details' album.id%}" class="btn btn-outline-info" role="button">View Songs</a>
-
-				    <form action="{% url 'music:album-update' album.id %} " method="post">
-				    	{% csrf_token %}
-					    <button type="submit" class="btn btn-outline-success">Update</button>	
-				    </form>
+				    <a style="float: left;margin-right: 2px;" href="{% url 'music:details' album.id%}" class="btn btn-outline-info" role="button">View Songs</a>
 				    
 				    <form action="{% url 'music:album-delete' album.id %} " method="post">
 				    		{% csrf_token %}
